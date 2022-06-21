@@ -73,11 +73,11 @@ Sales are almost there... last thing to do is waiting for customers on a shoppin
 2. accepting orders
    - -[x] Show an order confirmation when the user submits the form. This should contain the chosen products and delivery address.
 3. validation
-   - Use PHP to check the following:
-     - Required fields are not empty.
-     - Zip code are only numbers.
-     - Email address is valid.
-   - Show any problems (empty or invalid data) with the fields at the top of the form. Tip: use the [bootstrap alerts](https://getbootstrap.com/docs/4.0/components/alerts/) for inspiration. If they are valid, the confirmation of step 1 is shown.
+   - -[x] Use PHP to check the following:
+     - -[x] Required fields are not empty.
+     - -[x] Zip code are only numbers.
+     - -[x] Email address is valid.
+   - -[x] Show any problems (empty or invalid data) with the fields at the top of the form. Tip: use the [bootstrap alerts](https://getbootstrap.com/docs/4.0/components/alerts/) for inspiration. If they are valid, the confirmation of step 1 is shown.
    - If the form was not valid, show the previous values in the form so that the user doesn't have to retype everything.
 4. improve UX by saving user data
   - Check out the possibilities of the PHP session and cookies.
