@@ -75,7 +75,7 @@ function validate()
 }
 
 
-function handleForm()
+function handleForm($products)
 {
 
     // TODO: form related tasks (step 1)
@@ -94,7 +94,7 @@ function handleForm()
         // TODO: handle successful submission
         echo '<div class="alert alert-success text-center" role="alert">';
         echo "You ordered following items:<br>";
-        echo getOrder();
+        echo getOrder($products);
         echo "<br>For delivery at: <br>";
         echo getAdress();
         echo "<br>Estimated delivery time: 1-3 workdays.";
@@ -110,16 +110,16 @@ function getAdress()
     $streetNumber = ($_POST['streetnumber']);
     $city = ($_POST['city']);
     $zipcode = ($_POST['zipcode']);
-    $adress = $street . " " . $streetNumber . " " . $city . " " . $zipcode;
+    $adress = $street . " " . $streetNumber . "<br>" . $zipcode . " " . $city;
     return $adress;
 }
 
-function getOrder()
+function getOrder($products)
 {
     $order = "";
 
-    foreach ($_POST['products'] as $selected) {
-       $order .= "- ". $selected ."<br>";
+    foreach ($_POST['products'] as $selected => $item) {
+       $order .= "- ". $products[$selected]['name'] ."<br>";
     }
     return $order;
 }
@@ -131,7 +131,7 @@ if (isset($_POST['submit'])) {
     $formSubmitted = true;
 }
 if ($formSubmitted) {
-    handleForm();
+    handleForm($products);
 }
 
 
