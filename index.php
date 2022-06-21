@@ -10,7 +10,8 @@ declare(strict_types=1);
 session_start();
 
 // Use this function when you need to need an overview of these variables
-function whatIsHappening() {
+function whatIsHappening()
+{
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
     echo '<h2>$_POST</h2>';
@@ -21,36 +22,72 @@ function whatIsHappening() {
     var_dump($_SESSION);
 }
 
-// TODO: provide some products (you may overwrite the example)
+
 $products = [
-    ['name' => 'Your favourite drink', 'price' => 2.5],
+    ['name' => 'Standard rubber duck', 'price' => 1.5],
+    ['name' => 'pirate rubber duck', 'price' => 2.5],
+    ['name' => 'princess rubber duck', 'price' => 2.5],
+    ['name' => 'Big rubber duck', 'price' => 3],
+    ['name' => 'mummy rubber duck', 'price' => 3],
 ];
 
 $totalValue = 0;
 
+
+
+
+
+
 function validate()
 {
     // TODO: This function will send a list of invalid fields back
+
     return [];
 }
 
 function handleForm()
 {
+
+
     // TODO: form related tasks (step 1)
+    $street = $_POST['street'];
+    $streetNumber = $_POST['streetnumber'];
+    $city = $_POST['city'];
+    $zipcode = $_POST['zipcode'];
+    $adress = $street . " " . $streetNumber . " " . $city . " " . $zipcode;
+
+    echo "You ordered following items:<br>";
+    if (!empty($_POST['products'])){
+        foreach ($_POST['products'] as $selected){
+            echo $selected."<br>";
+        }
+    }
+    echo "For delivery at " .$adress . "<br>Estimated delivery time: 1-3 workdays.";
+
+
+
+
 
     // Validation (step 2)
-    $invalidFields = validate();
-    if (!empty($invalidFields)) {
-        // TODO: handle errors
-    } else {
-        // TODO: handle successful submission
+        $invalidFields = validate();
+        if (!empty($invalidFields)) {
+            // TODO: handle errors
+
+        } else {
+            // TODO: handle successful submission
+        }
     }
-}
+
 
 // TODO: replace this if by an actual check
+
 $formSubmitted = false;
+if (isset($_POST['submit'])) {
+    $formSubmitted = true;
+}
 if ($formSubmitted) {
     handleForm();
 }
+
 
 require 'form-view.php';

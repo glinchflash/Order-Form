@@ -61,3 +61,24 @@
 Sales are almost there... last thing to do is waiting for customers on a shopping spree!
 
 ![](https://media.giphy.com/media/iJmi4OLkDgO9aZWS1R/giphy.gif)
+---
+
+## Progress
+
+1. preparation
+  - -[x] Have a look at the provided structure: you get both an index file and another file containing a form. How are these two working together?
+  - -[x] Think of a funny / surprising / original name for a store that should definitely exist. (fancy suits for cats? bongo for dates? you name it!)
+  - -[x] Think of some products to sell (feel free to be creative) and update the products array with these.
+  - -[x] Check if all the products & prices are currently visible in the form.
+2. accepting orders
+   - -[x] Show an order confirmation when the user submits the form. This should contain the chosen products and delivery address.
+3. validation
+   - Use PHP to check the following:
+     - Required fields are not empty.
+     - Zip code are only numbers.
+     - Email address is valid.
+   - Show any problems (empty or invalid data) with the fields at the top of the form. Tip: use the [bootstrap alerts](https://getbootstrap.com/docs/4.0/components/alerts/) for inspiration. If they are valid, the confirmation of step 1 is shown.
+   - If the form was not valid, show the previous values in the form so that the user doesn't have to retype everything.
+4. improve UX by saving user data
+  - Check out the possibilities of the PHP session and cookies.
+  - We want to prefill the address (you can just use any previous user input, we don't need to get data from anywhere else), as long as the browser isn't closed. Which of these techniques is the better choice here?
