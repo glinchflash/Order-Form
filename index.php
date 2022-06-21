@@ -42,33 +42,33 @@ function validate()
     $warningMessageEmail = ' field is required, Please check if field is correctly filled in! Email has to be valid!';
     $warningMessageStreet_City = ' field is required, Please check if field is correctly filled in! Can only include letters!';
     $warningMessageStreetnumber = ' field is required, Please check if field is correctly filled in!';
-    $warningMessageZipcode= ' field is required, Please check if field is correctly filled in! Can only include numbers!';
+    $warningMessageZipcode = ' field is required, Please check if field is correctly filled in! Can only include numbers!';
 
     //validate e-mail
-    if (empty(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))){
-        array_push($warnings, 'email'.$warningMessageEmail);
+    if (empty(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))) {
+        array_push($warnings, 'email' . $warningMessageEmail);
     }
     //validate street
-    if (empty($_POST['street'])){
-        array_push($warnings, 'street'.$warningMessageStreet_City);
+    if (empty($_POST['street'])) {
+        array_push($warnings, 'street' . $warningMessageStreet_City);
     }
     //validate streetnumber
-    if (empty($_POST['streetnumber'])){
-        array_push($warnings, 'street number'.$warningMessageStreetnumber);
+    if (empty($_POST['streetnumber'])) {
+        array_push($warnings, 'street number' . $warningMessageStreetnumber);
     }
 
     //validate city
-    if (!ctype_alpha($_POST['city'])){
-        array_push($warnings, 'city'.$warningMessageStreet_City);
+    if (!ctype_alpha($_POST['city'])) {
+        array_push($warnings, 'city' . $warningMessageStreet_City);
     }
     //validate zipcode
-    if (empty($_POST['zipcode'])){
-        array_push($warnings, 'zipcode'.$warningMessageZipcode);
-    } else if (!ctype_digit($_POST['zipcode'])){
-        array_push($warnings, 'zipcode'.$warningMessageZipcode);
+    if (empty($_POST['zipcode'])) {
+        array_push($warnings, 'zipcode' . $warningMessageZipcode);
+    } else if (!ctype_digit($_POST['zipcode'])) {
+        array_push($warnings, 'zipcode' . $warningMessageZipcode);
     }
     //validate products
-    if (empty($_POST['products'])){
+    if (empty($_POST['products'])) {
         array_push($warnings, 'You need to choose one of our products!');
     }
     return $warnings;
@@ -86,9 +86,9 @@ function handleForm($products)
     if (!empty($invalidFields)) {
         // TODO: handle errors
 
-            echo '<div class="alert alert-danger text-center" role="alert">';
-            echo $error;
-            echo "</div>";
+        echo '<div class="alert alert-danger text-center" role="alert">';
+        echo $error;
+        echo "</div>";
 
     } else {
         // TODO: handle successful submission
@@ -97,6 +97,9 @@ function handleForm($products)
         echo getOrder($products);
         echo "<br>For delivery at: <br>";
         echo getAdress();
+        echo "<br>The total cost of your order is: ";
+        echo calcPrice($products);
+        echo "&euro;";
         echo "<br>Estimated delivery time: 1-3 workdays.";
         echo "</div>";
     }
@@ -117,12 +120,22 @@ function getAdress()
 function getOrder($products)
 {
     $order = "";
-
     foreach ($_POST['products'] as $selected => $item) {
-       $order .= "- ". $products[$selected]['name'] ."<br>";
+        $order .= "- " . $products[$selected]['name'] . "<br>";
     }
     return $order;
 }
+
+
+function calcPrice($products)
+{
+    $total = 0;
+    foreach ($_POST['products'] as $selected => $item) {
+        $total += $products[$selected]['price'];
+    }
+    return $total;
+}
+
 
 // TODO: replace this if by an actual check
 

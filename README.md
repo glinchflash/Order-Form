@@ -70,8 +70,11 @@ Sales are almost there... last thing to do is waiting for customers on a shoppin
   - -[x] Think of a funny / surprising / original name for a store that should definitely exist. (fancy suits for cats? bongo for dates? you name it!)
   - -[x] Think of some products to sell (feel free to be creative) and update the products array with these.
   - -[x] Check if all the products & prices are currently visible in the form.
+
 2. accepting orders
    - -[x] Show an order confirmation when the user submits the form. This should contain the chosen products and delivery address.
+   
+
 3. validation
    - -[x] Use PHP to check the following:
      - -[x] Required fields are not empty.
@@ -79,6 +82,37 @@ Sales are almost there... last thing to do is waiting for customers on a shoppin
      - -[x] Email address is valid.
    - -[x] Show any problems (empty or invalid data) with the fields at the top of the form. Tip: use the [bootstrap alerts](https://getbootstrap.com/docs/4.0/components/alerts/) for inspiration. If they are valid, the confirmation of step 1 is shown.
    - -[x] If the form was not valid, show the previous values in the form so that the user doesn't have to retype everything.
+   
 4. improve UX by saving user data
   - Check out the possibilities of the PHP session and cookies.
   - We want to prefill the address (you can just use any previous user input, we don't need to get data from anywhere else), as long as the browser isn't closed. Which of these techniques is the better choice here?
+---
+## 🌼 Nice-to-have features (doable) Progress
+
+1. Expanding due to success
+   - Read about `get` variables and what you can do with it.
+   - Find commented navigation and activate it. Tweak the content for your own store.
+   - Make a second category of products, and provide a new array for this info.
+   - The navigation should work as a toggle to switch between the two categories of products.
+   
+2. Bulk orders
+   - Allow the user to specify how much he or she wants to buy of a certain products
+
+3. Look & feel
+   - What kind of style would suit your store? Add a color schema and a suitable font.
+   - Check what you can do for validation with html and JS. Use this to improve your validation.
+---
+
+## 🌳 Nice-to-have features (hard)
+
+1. Delivery times
+   - Show the expected delivery time in the confirmation message (2h by default).
+   - A user can opt for express delivery (5$ for delivery in 45min).
+
+2. Statistics
+   - Show statistics about how much money has been spent. This info should be kept (can you use the session or cookies for this?) when the browser closes.
+   - Include the most popular product (by this user) and amount of products bought by this user.
+---
+
+## 🌳 Nice-to-have features (improvised)
+1. - [x] Display cost of the order at confirmation 
