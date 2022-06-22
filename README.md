@@ -36,10 +36,10 @@
 ## 🌼 Nice-to-have features (doable)
 
 ### Expanding due to success
-- Read about `get` variables and what you can do with it.
-- Find commented navigation and activate it. Tweak the content for your own store.
-- Make a second category of products, and provide a new array for this info.
-- The navigation should work as a toggle to switch between the two categories of products.
+- -[x] Read about `get` variables and what you can do with it.
+- -[x] Find commented navigation and activate it. Tweak the content for your own store.
+- -[x] Make a second category of products, and provide a new array for this info.
+- -[x] The navigation should work as a toggle to switch between the two categories of products.
 
 ### Bulk orders
 - Allow the user to specify how much he or she wants to buy of a certain products
@@ -96,7 +96,7 @@ Sales are almost there... last thing to do is waiting for customers on a shoppin
    - The navigation should work as a toggle to switch between the two categories of products.
    
 2. Bulk orders
-   - Allow the user to specify how much he or she wants to buy of a certain products
+   - -[x] Allow the user to specify how much he or she wants to buy of a certain products
 
 3. Look & feel
    - What kind of style would suit your store? Add a color schema and a suitable font.

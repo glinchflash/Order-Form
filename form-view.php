@@ -15,18 +15,18 @@
 <div class="container">
     <h1>Place your order</h1>
     <?php // Navigation for when you need it ?>
-    <?php /*
+
     <nav>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link active" href="?food=1">Order food</a>
+                <a class="nav-link active" href="?ducks=0">Order rubber duckies</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?food=0">Order drinks</a>
+                <a class="nav-link" href="?ducks=1">Order bathbomb duckies</a>
             </li>
         </ul>
     </nav>
-    */ ?>
+
     <form method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -42,21 +42,21 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="street">Street:</label>
-                    <input type="text" name="street" id="street" class="form-control" value="<?php echo htmlspecialchars($_POST['street'] ?? '', ENT_QUOTES); ?>"">
+                    <input type="text" name="street" id="street" class="form-control" value="<?php echo htmlspecialchars($street) ?>"">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number:</label>
-                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="<?php echo htmlspecialchars($_POST['streetnumber'] ?? '', ENT_QUOTES); ?>">
+                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="<?php echo htmlspecialchars($streetnumber) ?>">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" class="form-control" value="<?php echo htmlspecialchars($_POST['city'] ?? '', ENT_QUOTES); ?>">
+                    <input type="text" id="city" name="city" class="form-control" value="<?php echo htmlspecialchars($city) ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode</label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="<?php echo htmlspecialchars($_POST['zipcode'] ?? '', ENT_QUOTES); ?>">
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="<?php echo htmlspecialchars($zipcode) ?>">
                 </div>
             </div>
         </fieldset>
@@ -66,7 +66,8 @@
             <?php $i = 1;foreach ($products as $i => $product): ?>
                 <label>
 					<?php // <?= is equal to <?php echo ?>
-                    <input type="checkbox" value="1" <?php if (!empty($_POST['products'][$i])): ?> checked="checked"<?php endif; ?>name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?> -
+                    <input style="width: 2.5rem" type="number" name="quantity[<?php echo $i ?>]" value="<?php echo $_POST['quantity'] ?? 0 ?>"  >
+                    <input type="checkbox" value="1" <?php if (!empty($_POST['products'][$i])): ?> checked="checked" <?php endif; ?>name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?> -
                     &euro; <?= number_format($product['price'], 2) ?></label><br />
             <?php endforeach; ?>
         </fieldset>

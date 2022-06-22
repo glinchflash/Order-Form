@@ -6,6 +6,7 @@
 // This line makes PHP behave in a more strict way
 declare(strict_types=1);
 
+
 // We are going to use session variables so we need to enable sessions
 session_start();
 
@@ -22,15 +23,23 @@ function whatIsHappening()
     var_dump($_SESSION);
 }
 
-
-$products = [
-    ['name' => 'Standard rubber duck', 'price' => 1.5],
-    ['name' => 'pirate rubber duck', 'price' => 2.5],
-    ['name' => 'princess rubber duck', 'price' => 2.5],
-    ['name' => 'Big rubber duck', 'price' => 3],
-    ['name' => 'mummy rubber duck', 'price' => 3],
-];
-
+if(isset($_GET["ducks"]) && $_GET["ducks"] == 1) {
+    $products = [
+        ['name' => 'Standard bath bomb duck', 'price' => 2.5],
+        ['name' => 'dragon bath bomb duck', 'price' => 3],
+        ['name' => 'halloween bath bomb duck', 'price' => 3.5],
+        ['name' => 'my little pony bath bomb duck', 'price' => 4],
+        ['name' => 'big bath bomb duck', 'price' => 5]
+    ];
+}else {
+    $products = [
+        ['name' => 'Standard rubber duck', 'price' => 1.5],
+        ['name' => 'pirate rubber duck', 'price' => 2.5],
+        ['name' => 'princess rubber duck', 'price' => 2.5],
+        ['name' => 'Big rubber duck', 'price' => 3],
+        ['name' => 'mummy rubber duck', 'price' => 3],
+    ];
+}
 $totalValue = 0;
 
 
@@ -109,16 +118,17 @@ function handleForm($products)
 function getAdress()
 {
 
-    $street = ($_POST['street']);
-    $streetNumber = ($_POST['streetnumber']);
-    $city = ($_POST['city']);
-    $zipcode = ($_POST['zipcode']);
+    $street = $_POST['street'];
+    $streetNumber = $_POST['streetnumber'];
+    $city = $_POST['city'];
+    $zipcode = $_POST['zipcode'];
     $adress = $street . " " . $streetNumber . "<br>" . $zipcode . " " . $city;
     return $adress;
 }
 
 function getOrder($products)
 {
+
     $order = "";
     foreach ($_POST['products'] as $selected => $item) {
         $order .= "- " . $products[$selected]['name'] . "<br>";
@@ -129,12 +139,16 @@ function getOrder($products)
 
 function calcPrice($products)
 {
+
     $total = 0;
+
     foreach ($_POST['products'] as $selected => $item) {
-        $total += $products[$selected]['price'];
+        $quantity = $_POST['quantity'][$selected];
+        $total += $products[$selected]['price'] * $quantity;
     }
     return $total;
 }
+
 
 
 // TODO: replace this if by an actual check
@@ -145,7 +159,36 @@ if (isset($_POST['submit'])) {
 }
 if ($formSubmitted) {
     handleForm($products);
+
 }
 
+// create session variables
+$street = "";
+$streetNumber = "";
+$city = "";
+$zipcode = "";
+//first time the user visits page and fills in form, store the value's in the super global $_SESSION
+if (!empty($_POST)){
+    $_SESSION['street'] = $_POST['street'];
+    $_SESSION['streetnumber'] = $_POST['streetnumber'];
+    $_SESSION['city'] = $_POST['city'];
+    $_SESSION['zipcode'] = $_POST['zipcode'];
+}
+//next time the user visits the page check if there is a $_SESSION availaible,
+// if there is get value's from the super global and use this to fill in form
+if (!empty($_SESSION)){
+    if (!empty($_SESSION['street'])){
+        $street = $_SESSION['street'];
+    }
+    if (!empty($_SESSION['streetnumber'])){
+        $streetnumber = $_SESSION['streetnumber'];
+    }
+   if (!empty($_SESSION['city'])){
+       $city = $_SESSION['city'];
+   }
+    if (!empty($_SESSION['zipcode'])){
+        $zipcode = $_SESSION['zipcode'];
+    }
+}
 
 require 'form-view.php';
